@@ -11,15 +11,15 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
 interface SidebarProps {
     isOpen: boolean;
+    isMobile: boolean;
     toggleSidebar: () => void;
 }
 
-const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => (
+const Sidebar = ({ isOpen, isMobile, toggleSidebar }: SidebarProps) => (
   <Drawer
     anchor="left"
-    variant='persistent'
-    // slotProps={{ backdrop: { invisible: true }}}
-    hideBackdrop
+    variant={!isMobile ? "persistent" : undefined}
+    hideBackdrop={!isMobile}
     sx={{ "& .MuiDrawer-paper": { marginTop: "64px", backgroundColor: "#2e2e2e" } }}
     open={isOpen}
     onClose={toggleSidebar}
