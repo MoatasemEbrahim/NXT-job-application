@@ -11,10 +11,11 @@ interface TextFieldInputProps {
   inputClassname?: string;
   labelClassname?: string;
   icon?: ReactNode;
+  type: string;
 }
 
 const TextFieldInput = ({
-  name, label, placeholder="", required = false, className, inputClassname, labelClassname, icon=null, ...props
+  name, label, placeholder="", required = false, className, inputClassname, labelClassname, type, icon=null, ...props
 }: TextFieldInputProps
 ) => {
   const form = useFormContext();
@@ -34,7 +35,7 @@ const TextFieldInput = ({
       <div className="my-1 border-2 border-gray-500 w-full">
         <input
           {...form.register(name)}
-          type="text"
+          type={type}
           placeholder={placeholder}
           id={name}
           className={twMerge("w-full px-2 py-3 bg-transparent", inputClassname)}

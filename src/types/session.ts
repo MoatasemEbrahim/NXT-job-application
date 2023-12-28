@@ -1,10 +1,14 @@
 export interface Session {
   id: number
   title: string;
+  subtitle: string
   cover_image: string;
-  date: string;
-  from: string;
-  till: string;
+  description: string;
+  speaker_ids: number[];
+  moderator_ids: number[];
+  date: Date;
+  from: Date;
+  till: Date;
   venue: {
     id: number;
     name: string;

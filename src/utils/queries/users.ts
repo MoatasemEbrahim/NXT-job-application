@@ -6,14 +6,17 @@ interface ISessiosRequest {
   limit?: number
 }
 
-interface ISessiosResponse {
-  count: number;
-  is_last_offset: boolean;
-  users: User[];
-}
-
-export const getUsers = async ({ eventId, offset = 0, limit = 10,  }:ISessiosRequest): Promise<ISessiosResponse> => {
+export const getUsers = async ({ eventId, offset = 0, limit = 1000,  }:ISessiosRequest): Promise<User[]> => {
   const response = await queryClient.get(`/get-users?event_id=${eventId}&offset=${offset}&limit=${limit}`);
   return response.data;
 };
+
+export const createUser = async ({ eventId, user }:{ eventId: number, user:User}): Promise<User> => {
+  const response = await queryClient.post("/create-users", {
+    event_id: eventId,
+    ...user
+  });
+  return response.data;
+};
+
 
